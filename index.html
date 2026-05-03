@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cacharrito Ferroeléctrico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       RESET Y VARIABLES
+    ============================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --steel:  #1a1e24;
+      --steel2: #232830;
+      --steel3: #2d3340;
+      --chrome: #b8c4d0;
+      --gold:   #d4890a;
+      --gold2:  #f0a820;
+      --white:  #f0eff0;
+      --muted:  #7a8695;
+      --red:    #c0392b;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--steel);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       NAVEGACIÓN
+    ============================================= */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(22, 26, 32, 0.97);
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 64px;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--gold2);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--chrome);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      display: block;
+      margin-top: -6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--chrome);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold2);
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--steel);
+      padding: 0.45rem 1.2rem;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold2);
+    }
+
+    /* Menú hamburguesa (móvil) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--chrome);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* =============================================
+       SECCIÓN HERO
+    ============================================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 4rem;
+      background: var(--steel);
+    }
+
+    .hero-bg {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      background: linear-gradient(135deg, var(--steel3) 0%, #1a2330 100%);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      background-image:
+        linear-gradient(var(--steel3) 1px, transparent 1px),
+        linear-gradient(90deg, var(--steel3) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-accent {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--steel);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5.5rem;
+      line-height: 0.9;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      color: var(--gold2);
+      font-style: normal;
+    }
+
+    .hero p {
+      color: var(--chrome);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--steel);
+      padding: 0.75rem 2rem;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold2);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--chrome);
+      padding: 0.75rem 2rem;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid var(--muted);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 3rem;
+      left: 4rem;
+      right: 4rem;
+      display: flex;
+      gap: 3rem;
+      z-index: 2;
+      animation: fadeUp 0.8s 0.3s ease both;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    .stat {
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--gold2);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* =============================================
+       SECCIONES BASE
+    ============================================= */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      max-width: 520px;
+    }
+
+    /* =============================================
+       SECCIÓN PRODUCTOS
+    ============================================= */
+    #productos {
+      background: var(--steel2);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--steel3);
+      border: 1px solid rgba(212, 137, 10, 0.2);
+      border-radius: 6px;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product-card:hover {
+      border-color: rgba(212, 137, 10, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .product-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    /* =============================================
+       SECCIÓN NOSOTROS
+    ============================================= */
+    #nosotros {
+      background: var(--steel);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-box {
+      background: var(--steel3);
+      border: 1px solid rgba(212, 137, 10, 0.3);
+      border-radius: 6px;
+      padding: 2.5rem;
+    }
+
+    .about-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--gold2);
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .values-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .values-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--chrome);
+      font-size: 0.95rem;
+    }
+
+    .values-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--gold);
+      color: var(--steel);
+      padding: 1.2rem 1.5rem;
+      border-radius: 4px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-align: center;
+      min-width: 130px;
+    }
+
+    .about-text p {
+      color: var(--chrome);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* =============================================
+       SECCIÓN CONTACTO
+    ============================================= */
+    #contacto {
+      background: var(--steel2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-item p {
+      color: var(--chrome);
+      font-size: 0.95rem;
+    }
+
+    /* Formulario */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--steel3);
+      border: 1px solid rgba(184, 196, 208, 0.2);
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group select option {
+      background: var(--steel3);
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: var(--steel);
+      padding: 0.85rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--gold2);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: #111418;
+      border-top: 2px solid var(--gold);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      color: var(--gold2);
+    }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* =============================================
+       ANIMACIONES
+    ============================================= */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =============================================
+       RESPONSIVE (MÓVIL)
+    ============================================= */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 1.5rem;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 10rem;
+        align-items: flex-start;
+        padding-top: 8rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero-bg,
+      .hero-grid {
+        display: none;
+      }
+
+      .hero-stats {
+        left: 1.5rem;
+        right: 1.5rem;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        bottom: 2rem;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-accent {
+        position: static;
+        display: inline-block;
+        margin-top: 1rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVEGACIÓN
+  ============================================= -->
+  <nav>
+    <a href="#inicio" class="logo">
+      Cacharrito
+      <span>Ferroeléctrico</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+      Cotizar
+    </button>
+    <!-- Botón móvil -->
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-accent"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">⚡ Insumos para Ferreterías</div>
+      <h1>Todo lo que tu <em>ferretería</em> necesita</h1>
+      <p>
+        Somos tu proveedor de confianza en insumos, herramientas y materiales
+        para ferreterías. Calidad industrial, precios competitivos y entrega a tiempo.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
+          Ver Productos
+        </button>
+        <button class="btn-secondary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+          Solicitar Cotización
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Productos disponibles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Garantía de calidad</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24h</div>
+        <div class="stat-label">Tiempo de respuesta</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PRODUCTOS
+  ============================================= -->
+  <section id="productos">
+    <div class="section-tag">Catálogo</div>
+    <div class="section-title">Nuestros Productos</div>
+    <div class="section-sub">
+      Contamos con una amplia línea de insumos para abastecer tu ferretería
+      con todo lo que necesitas.
+    </div>
+
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-badge">Top venta</div>
+        <div class="product-icon">🔩</div>
+        <h3>Tornillería y Fijaciones</h3>
+        <p>Tornillos, pernos, tuercas, arandelas y todo tipo de elementos de fijación en múltiples materiales y medidas.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🔧</div>
+        <h3>Herramientas Manuales</h3>
+        <p>Destornilladores, llaves, martillos, alicates y más. Marcas reconocidas para uso profesional y doméstico.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">⚡</div>
+        <h3>Material Eléctrico</h3>
+        <p>Cables, interruptores, tomacorrientes, cinta eléctrica, conectores y accesorios para instalaciones eléctricas.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge">Nuevo</div>
+        <div class="product-icon">🪣</div>
+        <h3>Pinturas y Acabados</h3>
+        <p>Pinturas, selladores, thinner, brochas y rodillos para todo tipo de superficie y acabado.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🪚</div>
+        <h3>Herramientas Eléctricas</h3>
+        <p>Taladros, pulidoras, sierras y accesorios para trabajos de mayor exigencia y precisión.</p>
+      </div>
+
+      <div class="product-card">
+        <div class="product-icon">🧰</div>
+        <h3>Plomería y Fontanería</h3>
+        <p>Tubería PVC, uniones, válvulas, llaves de paso, codos y accesorios para instalaciones hidráulicas.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       NOSOTROS
+  ============================================= -->
+  <section id="nosotros">
+    <div class="about-grid">
+
+      <div class="about-text">
+        <div class="section-tag">¿Quiénes somos?</div>
+        <div class="section-title">Cacharrito Ferroeléctrico</div>
+        <p>
+          Somos un emprendimiento colombiano especializado en la distribución de
+          insumos para ferreterías. Nuestro objetivo es ser el aliado estratégico
+          de cada ferretería, brindando productos de calidad a precios justos.
+        </p>
+        <p>
+          Nacimos con la convicción de que los pequeños negocios merecen el mismo
+          acceso a buenos proveedores que las grandes superficies. Por eso trabajamos
+          directo con fabricantes para traerte los mejores precios.
+        </p>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-box">
+          <h3>Nuestros Valores</h3>
+          <ul class="values-list">
+            <li>Calidad garantizada en cada producto</li>
+            <li>Precios competitivos y transparentes</li>
+            <li>Entregas puntuales y confiables</li>
+            <li>Asesoría personalizada para tu negocio</li>
+            <li>Compromiso con el cliente siempre</li>
+            <li>Apoyo al emprendedor colombiano</li>
+          </ul>
+        </div>
+        <div class="about-accent">
+          Cali,<br>Colombia<br>📍
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============================================
+       CONTACTO
+  ============================================= -->
+  <section id="contacto">
+    <div class="section-tag">Hablemos</div>
+    <div class="section-title">Contáctanos</div>
+    <div class="section-sub">
+      ¿Necesitas cotización o tienes alguna pregunta? Escríbenos y te respondemos
+      en menos de 24 horas.
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- Datos de contacto -->
+      <div class="contact-info">
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Teléfono / WhatsApp</h4>
+            <!-- ✏️ CAMBIA AQUÍ TU NÚMERO -->
+            <p>+57 300 000 0000</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Correo Electrónico</h4>
+            <!-- ✏️ CAMBIA AQUÍ TU CORREO -->
+            <p>ventas@cacharitoferroelectrico.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Ubicación</h4>
+            <p>Cali, Valle del Cauca, Colombia</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Horario de Atención</h4>
+            <p>Lunes a Viernes: 8am – 6pm<br>Sábados: 8am – 1pm</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Formulario -->
+      <div class="contact-form">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="Tu número">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" placeholder="tucorreo@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="consulta">Tipo de consulta</label>
+          <select id="consulta">
+            <option>Cotización de productos</option>
+            <option>Información general</option>
+            <option>Pedido al por mayor</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="enviarFormulario()">
+          Enviar mensaje ⚡
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-logo">Cacharrito Ferroeléctrico</div>
+    <div class="footer-copy">© 2026 Cacharrito Ferroeléctrico. Todos los derechos reservados.</div>
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // ----- Menú móvil -----
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const cta   = document.querySelector('.nav-cta');
+
+      if (links.style.display === 'flex') {
+        links.style.display = 'none';
+        cta.style.display   = 'none';
+      } else {
+        links.style.cssText = 'display:flex; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:#161a20; padding:1.5rem 2rem; gap:1rem; border-bottom:2px solid #d4890a;';
+        cta.style.cssText   = 'display:block; position:absolute; top:130px; left:2rem; right:2rem;';
+      }
+    }
+
+    // ----- Envío de formulario -----
+    function enviarFormulario() {
+      const nombre   = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const consulta = document.getElementById('consulta').value;
+      const mensaje  = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !email || !mensaje) {
+        alert('Por favor completa los campos obligatorios: Nombre, Correo y Mensaje.');
+        return;
+      }
+
+      // ✏️ OPCIONAL: reemplaza con tu número de WhatsApp real (sin +, sin espacios)
+      const numeroWhatsApp = '573000000000';
+      const texto = encodeURIComponent(
+        `Hola! Soy ${nombre}.\n` +
+        `Consulta: ${consulta}\n` +
+        `Mensaje: ${mensaje}\n` +
+        `Teléfono: ${telefono || 'No indicado'}\n` +
+        `Email: ${email}`
+      );
+
+      window.open(`https://wa.me/${numeroWhatsApp}?text=${texto}`, '_blank');
+    }
+
+    // ----- Cerrar menú al hacer clic en un enlace (móvil) -----
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const links = document.querySelector('.nav-links');
+        const cta   = document.querySelector('.nav-cta');
+        links.style.display = 'none';
+        cta.style.display   = 'none';
+      });
+    });
+
+    // ----- Animación de tarjetas al hacer scroll -----
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeUp 0.6s ease both';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card, .contact-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
