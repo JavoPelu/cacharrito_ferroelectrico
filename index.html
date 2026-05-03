@@ -6,9 +6,7 @@
   <title>Cacharrito Ferroeléctrico</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* =============================================
-       RESET Y VARIABLES
-    ============================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -38,9 +36,6 @@
       overflow-x: hidden;
     }
 
-    /* =============================================
-       NAVEGACIÓN
-    ============================================= */
     nav {
       position: fixed;
       top: 0;
@@ -112,7 +107,6 @@
       background: var(--gold2);
     }
 
-    /* Menú hamburguesa (móvil) */
     .nav-toggle {
       display: none;
       flex-direction: column;
@@ -132,9 +126,6 @@
       transition: all 0.3s;
     }
 
-    /* =============================================
-       SECCIÓN HERO
-    ============================================= */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -297,9 +288,6 @@
       margin-top: 0.25rem;
     }
 
-    /* =============================================
-       SECCIONES BASE
-    ============================================= */
     section {
       padding: 6rem 4rem;
     }
@@ -328,9 +316,6 @@
       max-width: 520px;
     }
 
-    /* =============================================
-       SECCIÓN PRODUCTOS
-    ============================================= */
     #productos {
       background: var(--steel2);
     }
@@ -407,9 +392,6 @@
       border-radius: 2px;
     }
 
-    /* =============================================
-       SECCIÓN NOSOTROS
-    ============================================= */
     #nosotros {
       background: var(--steel);
     }
@@ -487,9 +469,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* =============================================
-       SECCIÓN CONTACTO
-    ============================================= */
     #contacto {
       background: var(--steel2);
     }
@@ -614,9 +593,6 @@
       background: var(--gold2);
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
     footer {
       background: #111418;
       border-top: 2px solid var(--gold);
@@ -657,9 +633,6 @@
       color: var(--gold);
     }
 
-    /* =============================================
-       ANIMACIONES
-    ============================================= */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -671,9 +644,6 @@
       }
     }
 
-    /* =============================================
-       RESPONSIVE (MÓVIL)
-    ============================================= */
     @media (max-width: 768px) {
       nav {
         padding: 0 1.5rem;
@@ -745,9 +715,6 @@
 </head>
 <body>
 
-  <!-- =============================================
-       NAVEGACIÓN
-  ============================================= -->
   <nav>
     <a href="#inicio" class="logo">
       Cacharrito
@@ -770,16 +737,13 @@
     </button>
   </nav>
 
-  <!-- =============================================
-       HERO
-  ============================================= -->
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="hero-accent"></div>
 
     <div class="hero-content">
-      <div class="hero-tag">⚡ Insumos para Ferreterías</div>
+      <div class="hero-tag">Insumos para Ferreterías</div>
       <h1>Todo lo que tu <em>ferretería</em> necesita</h1>
       <p>
         Somos tu proveedor de confianza en insumos, herramientas y materiales
@@ -811,9 +775,6 @@
     </div>
   </section>
 
-  <!-- =============================================
-       PRODUCTOS
-  ============================================= -->
   <section id="productos">
     <div class="section-tag">Catálogo</div>
     <div class="section-title">Nuestros Productos</div>
@@ -839,12 +800,12 @@
 
       <div class="product-card">
         <div class="product-icon">🧤</div>
-        <h3>Seguridad</h3>
+        <h3>Seguridad y accesorios</h3>
         <p>Equipo de protección individual (EPI) y accesorios para garantizar la seguridad en el trabajo.</p>
       </div>
 
       <div class="product-card">
-        <div class="product-badge">Nuevo</div>
+        <div class="product-badge">Variedad</div>
         <div class="product-icon">⛑️</div>
         <h3>Cacharros</h3>
         <p>Gran variedad de "cacharros" para cada compra en tu negocio.</p>
@@ -853,9 +814,6 @@
     </div>
   </section>
 
-  <!-- =============================================
-       NOSOTROS
-  ============================================= -->
   <section id="nosotros">
     <div class="about-grid">
 
@@ -887,16 +845,13 @@
           </ul>
         </div>
         <div class="about-accent">
-          Cali,<br>Colombia<br>📍
+          El Santuario,<br>Colombia<br>📍
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- =============================================
-       CONTACTO
-  ============================================= -->
   <section id="contacto">
     <div class="section-tag">Hablemos</div>
     <div class="section-title">Contáctanos</div>
@@ -907,14 +862,12 @@
 
     <div class="contact-grid">
 
-      <!-- Datos de contacto -->
       <div class="contact-info">
 
         <div class="contact-item">
           <div class="contact-icon">📞</div>
           <div>
             <h4>Teléfono / WhatsApp</h4>
-            <!-- ✏️ CAMBIA AQUÍ TU NÚMERO -->
             <p>+57 310 692 9003</p>
           </div>
         </div>
@@ -923,7 +876,6 @@
           <div class="contact-icon">📧</div>
           <div>
             <h4>Correo Electrónico</h4>
-            <!-- ✏️ CAMBIA AQUÍ TU CORREO -->
             <p>cacharritof@gmail.com</p>
           </div>
         </div>
@@ -981,16 +933,13 @@
         </div>
 
         <button class="submit-btn" onclick="enviarFormulario()">
-          Enviar mensaje ⚡
+          Enviar mensaje 
         </button>
 
       </div>
     </div>
   </section>
 
-  <!-- =============================================
-       FOOTER
-  ============================================= -->
   <footer>
     <div class="footer-logo">Cacharrito Ferroeléctrico</div>
     <div class="footer-copy">© 2026 Cacharrito Ferroeléctrico. Todos los derechos reservados.</div>
@@ -1002,9 +951,6 @@
     </div>
   </footer>
 
-  <!-- =============================================
-       JAVASCRIPT
-  ============================================= -->
   <script>
     // ----- Menú móvil -----
     function toggleMenu() {
@@ -1020,7 +966,6 @@
       }
     }
 
-    // ----- Envío de formulario -----
     function enviarFormulario() {
       const nombre   = document.getElementById('nombre').value.trim();
       const telefono = document.getElementById('telefono').value.trim();
@@ -1033,7 +978,6 @@
         return;
       }
 
-      // ✏️ OPCIONAL: reemplaza con tu número de WhatsApp real (sin +, sin espacios)
       const numeroWhatsApp = '573106929003';
       const texto = encodeURIComponent(
         `Hola! Soy ${nombre}.\n` +
