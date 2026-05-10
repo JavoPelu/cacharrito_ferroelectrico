@@ -49,24 +49,40 @@
       justify-content: space-between;
       padding: 0 3rem;
       height: 64px;
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(8px);
     }
 
     .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 3px;
-      color: var(--gold2);
+      display: flex;
+      align-items: center;
       cursor: pointer;
       text-decoration: none;
     }
 
-    .logo span {
-      color: var(--chrome);
+    .logo-text {
+      position: relative;
+      display: grid;
+      gap: 0;
+      color: #000;
+      background: #f5f5f3;
+      border-radius: 999px;
+      padding: 0.38rem 1.05rem 0.45rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: 0.82;
+      letter-spacing: 0;
+      transform: rotate(-4deg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+      isolation: isolate;
+    }
+
+    .logo-text .logo-main {
+      font-size: 1.22rem;
+    }
+
+    .logo-text .logo-sub {
       font-size: 1rem;
-      letter-spacing: 2px;
-      display: block;
-      margin-top: -6px;
     }
 
     .nav-links {
@@ -359,6 +375,16 @@
       transform: translateY(-4px);
     }
 
+    .product-card.active {
+      border-color: var(--gold);
+      background: #343b48;
+    }
+
+    .product-card:focus-visible {
+      outline: 2px solid var(--gold2);
+      outline-offset: 4px;
+    }
+
     .product-icon {
       font-size: 2.2rem;
       margin-bottom: 1rem;
@@ -390,6 +416,93 @@
       text-transform: uppercase;
       padding: 0.2rem 0.5rem;
       border-radius: 2px;
+    }
+
+    .product-gallery {
+      display: none;
+      margin-top: 2rem;
+      background: #15191f;
+      border: 1px solid rgba(212, 137, 10, 0.32);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+    }
+
+    .product-gallery.show {
+      display: block;
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .product-gallery-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(184, 196, 208, 0.14);
+    }
+
+    .product-gallery-title {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--gold2);
+      font-size: 1.7rem;
+      letter-spacing: 2px;
+    }
+
+    .product-gallery-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(184, 196, 208, 0.28);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--chrome);
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+
+    .product-gallery-close:hover {
+      border-color: var(--gold);
+      color: var(--gold2);
+    }
+
+    .product-gallery-window {
+      overflow: hidden;
+      padding: 1.4rem 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .product-gallery-track {
+      display: flex;
+      width: max-content;
+      gap: 1.2rem;
+      padding: 0 1.5rem;
+      animation: productosScroll 32s linear infinite;
+    }
+
+    .product-gallery:hover .product-gallery-track {
+      animation-play-state: paused;
+    }
+
+    .product-gallery-item {
+      flex: 0 0 auto;
+      width: 180px;
+      min-height: 166px;
+      background: var(--white);
+      border-radius: 6px;
+      padding: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-gallery-item img {
+      width: 100%;
+      height: 142px;
+      object-fit: contain;
+      display: block;
     }
 
     #nosotros {
@@ -593,6 +706,59 @@
       background: var(--gold2);
     }
 
+    .marcas-banner {
+      background: #15191f;
+      border-top: 1px solid rgba(212, 137, 10, 0.35);
+      padding: 3rem 0;
+      overflow: hidden;
+    }
+
+    .marcas-banner .section-tag,
+    .marcas-banner .section-title {
+      text-align: center;
+      display: block;
+    }
+
+    .marcas-slider {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 2rem;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+
+    .marcas-track {
+      display: flex;
+      width: max-content;
+      gap: 1.25rem;
+      animation: marcasScroll 28s linear infinite;
+    }
+
+    .marcas-slider:hover .marcas-track {
+      animation-play-state: paused;
+    }
+
+    .marca-item {
+      width: 180px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      background: var(--white);
+      border: 1px solid rgba(184, 196, 208, 0.2);
+      border-radius: 6px;
+      padding: 1rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .marca-item img {
+      max-width: 100%;
+      max-height: 72px;
+      object-fit: contain;
+      display: block;
+    }
+
     footer {
       background: #111418;
       border-top: 2px solid var(--gold);
@@ -644,6 +810,24 @@
       }
     }
 
+    @keyframes marcasScroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes productosScroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 0 1.5rem;
@@ -656,6 +840,18 @@
 
       .nav-toggle {
         display: flex;
+      }
+
+      .logo-text {
+        padding: 0.34rem 0.85rem 0.4rem;
+      }
+
+      .logo-text .logo-main {
+        font-size: 1.02rem;
+      }
+
+      .logo-text .logo-sub {
+        font-size: 0.84rem;
       }
 
       .hero {
@@ -701,6 +897,37 @@
         grid-template-columns: 1fr;
       }
 
+      .product-gallery-head {
+        padding: 1rem;
+      }
+
+      .product-gallery-title {
+        font-size: 1.35rem;
+      }
+
+      .product-gallery-item {
+        width: 145px;
+        min-height: 140px;
+      }
+
+      .product-gallery-item img {
+        height: 116px;
+      }
+
+      .marcas-banner {
+        padding: 2.5rem 0;
+      }
+
+      .marca-item {
+        width: 140px;
+        height: 82px;
+        padding: 0.75rem;
+      }
+
+      .marca-item img {
+        max-height: 58px;
+      }
+
       footer {
         padding: 2rem 1.5rem;
         flex-direction: column;
@@ -717,8 +944,10 @@
 
   <nav>
     <a href="#inicio" class="logo">
-      Cacharrito
-      <span>Ferroeléctrico</span>
+      <span class="logo-text" aria-label="Cacharrito Ferroeléctrico">
+        <span class="logo-main">Cacharrito</span>
+        <span class="logo-sub">FerroEléctrico</span>
+      </span>
     </a>
     <ul class="nav-links">
       <li><a href="#inicio">Inicio</a></li>
@@ -785,32 +1014,42 @@
 
     <div class="products-grid">
 
-      <div class="product-card">
-        <div class="product-badge">Top venta</div>
+      <div class="product-card" role="button" tabindex="0" data-product="herramientas">
         <div class="product-icon">🔧</div>
         <h3>Herramientas Manuales</h3>
         <p>Alicates, destornilladores, llaves, martillos y más. Marcas reconocidas para uso profesional y doméstico.</p>
       </div>
 
-      <div class="product-card">
+      <div class="product-card" role="button" tabindex="0" data-product="discos">
+        <div class="product-badge">Top venta</div>
         <div class="product-icon">🔘</div>
         <h3>Discos de corte</h3>
         <p>Discos de corte para diversos materiales y aplicaciones.</p>
       </div>
 
-      <div class="product-card">
-        <div class="product-icon">🧤</div>
+      <div class="product-card" role="button" tabindex="0" data-product="seguridad">
+        <div class="product-icon">⛑️</div>
         <h3>Seguridad y accesorios</h3>
-        <p>Equipo de protección individual (EPI) y accesorios para garantizar la seguridad en el trabajo.</p>
+        <p>Equipo de protección individual y accesorios para garantizar la seguridad en el trabajo.</p>
       </div>
 
-      <div class="product-card">
-        <div class="product-badge">Variedad</div>
-        <div class="product-icon">⛑️</div>
-        <h3>Cacharros</h3>
+      <div class="product-card" role="button" tabindex="0" data-product="mucho-mas">
+        <div class="product-badge">Variedad de productos</div>
+        <div class="product-icon">🧤</div>
+        <h3>Mucho más</h3>
         <p>Gran variedad de "cacharros" para cada compra en tu negocio.</p>
       </div>
 
+    </div>
+
+    <div class="product-gallery" id="product-gallery" aria-live="polite">
+      <div class="product-gallery-head">
+        <div class="product-gallery-title" id="product-gallery-title">Productos</div>
+        <button class="product-gallery-close" type="button" aria-label="Cerrar galería">×</button>
+      </div>
+      <div class="product-gallery-window">
+        <div class="product-gallery-track" id="product-gallery-track"></div>
+      </div>
     </div>
   </section>
 
@@ -940,6 +1179,32 @@
     </div>
   </section>
 
+  <section class="marcas-banner" aria-label="Marcas aliadas">
+    <div class="section-tag">Marcas</div>
+    <div class="section-title">Aliados de confianza</div>
+
+    <div class="marcas-slider">
+      <div class="marcas-track">
+        <div class="marca-item"><img src="imagenes/marcas/uyustools.jpg" alt="Uyustools"></div>
+        <div class="marca-item"><img src="imagenes/marcas/trek.jpg" alt="Trek"></div>
+        <div class="marca-item"><img src="imagenes/marcas/osblack.jpg" alt="Osblack"></div>
+        <div class="marca-item"><img src="imagenes/marcas/LOGO-INFINITA.jpg" alt="Infinita"></div>
+        <div class="marca-item"><img src="imagenes/marcas/ferrawy.jpg" alt="Ferrawy"></div>
+        <div class="marca-item"><img src="imagenes/marcas/dieses.jpg" alt="Dieses"></div>
+        <div class="marca-item"><img src="imagenes/marcas/conan.jpg" alt="Conan"></div>
+        <div class="marca-item"><img src="imagenes/marcas/brickell.jpg" alt="Brickell"></div>
+        <div class="marca-item"><img src="imagenes/marcas/uyustools.jpg" alt="Uyustools"></div>
+        <div class="marca-item"><img src="imagenes/marcas/trek.jpg" alt="Trek"></div>
+        <div class="marca-item"><img src="imagenes/marcas/osblack.jpg" alt="Osblack"></div>
+        <div class="marca-item"><img src="imagenes/marcas/LOGO-INFINITA.jpg" alt="Infinita"></div>
+        <div class="marca-item"><img src="imagenes/marcas/ferrawy.jpg" alt="Ferrawy"></div>
+        <div class="marca-item"><img src="imagenes/marcas/dieses.jpg" alt="Dieses"></div>
+        <div class="marca-item"><img src="imagenes/marcas/conan.jpg" alt="Conan"></div>
+        <div class="marca-item"><img src="imagenes/marcas/brickell.jpg" alt="Brickell"></div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="footer-logo">Cacharrito Ferroeléctrico</div>
     <div class="footer-copy">© 2026 Cacharrito Ferroeléctrico. Todos los derechos reservados.</div>
@@ -998,6 +1263,120 @@
         links.style.display = 'none';
         cta.style.display   = 'none';
       });
+    });
+
+    const productImages = {
+      herramientas: {
+        title: 'Herramientas Manuales',
+        images: [
+          'imagenes/productos/herraminetas manuales/ALICATE AJUSTESS.jpg',
+          'imagenes/productos/herraminetas manuales/ALICAHOMBRECADENA.jpg',
+          'imagenes/productos/herraminetas manuales/ALEM UYUS X 7.jpg',
+          'imagenes/productos/herraminetas manuales/CAUTIN FERRAWWW.jpg',
+          'imagenes/productos/herraminetas manuales/ALICATE UYUS.jpg',
+          'imagenes/productos/herraminetas manuales/ALICATE TIPO CRECENT.jpg',
+          'imagenes/productos/herraminetas manuales/LLANA ACERO INOXX.jpg',
+          'imagenes/productos/herraminetas manuales/CAUTIN FUYUS Y PISTO.jpg',
+          'imagenes/productos/herraminetas manuales/LLAVE MIXTA X 14MM PQÑ Y GRD.jpg',
+          'imagenes/productos/herraminetas manuales/ALEM x7CONAN.jpg'
+        ]
+      },
+      discos: {
+        title: 'Discos de corte',
+        images: [
+          'imagenes/productos/discos de corte/DISCO PORCELLLANA.jpg',
+          'imagenes/productos/discos de corte/DISCO MULTIPROPOSITO UYUS VERDE.jpg',
+          'imagenes/productos/discos de corte/DISCO MULTIPROPOSITO CLAVOS.jpg',
+          'imagenes/productos/discos de corte/DISCO MADERA7X24-7X40-7X60-4X24-4X40.jpg',
+          'imagenes/productos/discos de corte/DISCO CORTE SECO.jpg',
+          'imagenes/productos/discos de corte/DISCO CORTE SECO 14.jpg',
+          'imagenes/productos/discos de corte/DISCO CAPULIRG.jpg',
+          'imagenes/productos/discos de corte/DISCO caPULIR SS.jpg',
+          'imagenes/productos/discos de corte/DISCO CAMETAL 14 D.jpg',
+          'imagenes/productos/discos de corte/DISCO CAfORTE PULIR.jpg'
+        ]
+      },
+      seguridad: {
+        title: 'Seguridad y accesorios',
+        images: [
+          'imagenes/productos/seguridad y accesorios/VIDRIO SOLDD.jpg',
+          'imagenes/productos/seguridad y accesorios/GUANTE PUNT.png',
+          'imagenes/productos/seguridad y accesorios/GUANTE ANTI 300.png',
+          'imagenes/productos/seguridad y accesorios/GAFFFAS.jpg',
+          'imagenes/productos/seguridad y accesorios/FAJA CARGAR.jpg',
+          'imagenes/productos/seguridad y accesorios/CHALECO NARA.jpg',
+          'imagenes/productos/seguridad y accesorios/CASCO.jpg',
+          'imagenes/productos/seguridad y accesorios/CARETA SOLDADRRR.jpg',
+          'imagenes/productos/seguridad y accesorios/CARETA INTELIGENTEEE.png',
+          'imagenes/productos/seguridad y accesorios/CARETA GUADAÑA Y REP.png'
+        ]
+      },
+      'mucho-mas': {
+        title: 'Mucho más',
+        images: [
+          'imagenes/productos/mucho mas/SOPLETE TARRO GAS.jpg',
+          'imagenes/productos/mucho mas/SERRUPULICORA.png',
+          'imagenes/productos/mucho mas/RODACHIN 2.jpg',
+          'imagenes/productos/mucho mas/RATCHEX INDIVI.jpg',
+          'imagenes/productos/mucho mas/NAILONC CUADRAD.jpg',
+          'imagenes/productos/mucho mas/CUERDA JF 22.jpg',
+          'imagenes/productos/mucho mas/CORTABALDOZASSS.jpg',
+          'imagenes/productos/mucho mas/CORTABALDOZA.JPG',
+          'imagenes/productos/mucho mas/CADENA GALVANIZADA.jpg',
+          'imagenes/productos/mucho mas/BROCA ROTO.jpg'
+        ]
+      }
+    };
+
+    function productNameFromPath(path) {
+      return path
+        .split('/')
+        .pop()
+        .replace(/\.[^.]+$/, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function openProductGallery(productKey) {
+      const gallery = document.getElementById('product-gallery');
+      const title = document.getElementById('product-gallery-title');
+      const track = document.getElementById('product-gallery-track');
+      const product = productImages[productKey];
+
+      if (!product) return;
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.classList.toggle('active', card.dataset.product === productKey);
+      });
+
+      title.textContent = product.title;
+      const repeatedImages = [...product.images, ...product.images];
+      track.innerHTML = repeatedImages.map(path => {
+        const name = productNameFromPath(path);
+        return `
+          <div class="product-gallery-item">
+            <img src="${path}" alt="${name}" loading="lazy">
+          </div>
+        `;
+      }).join('');
+
+      gallery.classList.add('show');
+      gallery.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => openProductGallery(card.dataset.product));
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openProductGallery(card.dataset.product);
+        }
+      });
+    });
+
+    document.querySelector('.product-gallery-close').addEventListener('click', () => {
+      document.getElementById('product-gallery').classList.remove('show');
+      document.querySelectorAll('.product-card').forEach(card => card.classList.remove('active'));
     });
 
     // ----- Animación de tarjetas al hacer scroll -----
