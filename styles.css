@@ -488,6 +488,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .product-gallery-item img {
@@ -495,6 +497,18 @@
       height: 142px;
       object-fit: contain;
       display: block;
+      transition: transform 0.25s ease;
+      transform-origin: center;
+    }
+
+    .product-gallery-item:hover {
+      transform: scale(1.06);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+      z-index: 2;
+    }
+
+    .product-gallery-item:hover img {
+      transform: scale(1.12);
     }
 
     #nosotros {
