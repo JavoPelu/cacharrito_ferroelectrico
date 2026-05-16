@@ -294,6 +294,16 @@
     <span class="whatsapp-label">WhatsApp</span>
   </a>
 
+  <div class="catalog-modal" id="catalog-modal" aria-hidden="true">
+    <div class="catalog-backdrop" data-catalog-close></div>
+    <div class="catalog-viewer" role="dialog" aria-modal="true" aria-label="Vista ampliada del producto">
+      <button class="catalog-close" type="button" aria-label="Cerrar catálogo" data-catalog-close>×</button>
+      <button class="catalog-arrow catalog-prev" type="button" aria-label="Imagen anterior">‹</button>
+      <img id="catalog-image" src="" alt="">
+      <button class="catalog-arrow catalog-next" type="button" aria-label="Imagen siguiente">›</button>
+    </div>
+  </div>
+
   <script>
     // ----- Menú móvil -----
     function toggleMenu() {
@@ -416,6 +426,9 @@
         .trim();
     }
 
+    let activeCatalogImages = [];
+    let activeCatalogIndex = 0;
+
     function openProductGallery(productKey) {
       const gallery = document.getElementById('product-gallery');
       const title = document.getElementById('product-gallery-title');
@@ -430,12 +443,13 @@
 
       title.textContent = product.title;
       const repeatedImages = [...product.images, ...product.images];
-      track.innerHTML = repeatedImages.map(path => {
+      track.innerHTML = repeatedImages.map((path, index) => {
         const name = productNameFromPath(path);
+        const originalIndex = index % product.images.length;
         return `
-          <div class="product-gallery-item">
+          <button class="product-gallery-item" type="button" data-product="${productKey}" data-index="${originalIndex}" aria-label="Ver ${name} en grande">
             <img src="${path}" alt="${name}" loading="lazy">
-          </div>
+          </button>
         `;
       }).join('');
 
@@ -456,6 +470,62 @@
     document.querySelector('.product-gallery-close').addEventListener('click', () => {
       document.getElementById('product-gallery').classList.remove('show');
       document.querySelectorAll('.product-card').forEach(card => card.classList.remove('active'));
+    });
+
+    function showCatalogImage() {
+      const image = document.getElementById('catalog-image');
+      const path = activeCatalogImages[activeCatalogIndex];
+      const name = productNameFromPath(path);
+      image.src = path;
+      image.alt = name;
+    }
+
+    function openCatalog(productKey, index) {
+      const product = productImages[productKey];
+      const modal = document.getElementById('catalog-modal');
+
+      if (!product) return;
+
+      activeCatalogImages = product.images;
+      activeCatalogIndex = Number(index) || 0;
+      showCatalogImage();
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('catalog-open');
+    }
+
+    function closeCatalog() {
+      const modal = document.getElementById('catalog-modal');
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('catalog-open');
+    }
+
+    function moveCatalog(direction) {
+      if (!activeCatalogImages.length) return;
+      activeCatalogIndex = (activeCatalogIndex + direction + activeCatalogImages.length) % activeCatalogImages.length;
+      showCatalogImage();
+    }
+
+    document.getElementById('product-gallery-track').addEventListener('click', event => {
+      const item = event.target.closest('.product-gallery-item');
+      if (!item) return;
+      openCatalog(item.dataset.product, item.dataset.index);
+    });
+
+    document.querySelector('.catalog-prev').addEventListener('click', () => moveCatalog(-1));
+    document.querySelector('.catalog-next').addEventListener('click', () => moveCatalog(1));
+    document.querySelectorAll('[data-catalog-close]').forEach(button => {
+      button.addEventListener('click', closeCatalog);
+    });
+
+    document.addEventListener('keydown', event => {
+      const modal = document.getElementById('catalog-modal');
+      if (!modal.classList.contains('show')) return;
+
+      if (event.key === 'Escape') closeCatalog();
+      if (event.key === 'ArrowLeft') moveCatalog(-1);
+      if (event.key === 'ArrowRight') moveCatalog(1);
     });
 
     // ----- Animación de tarjetas al hacer scroll -----
