@@ -863,6 +863,10 @@
     @media (max-width: 768px) {
       nav {
         padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        height: auto;
+        min-height: 64px;
       }
 
       .nav-links,
@@ -872,6 +876,44 @@
 
       .nav-toggle {
         display: flex;
+        align-self: center;
+      }
+
+      nav.nav-open {
+        align-items: start;
+        padding-bottom: 1.25rem;
+      }
+
+      nav.nav-open .logo {
+        min-height: 64px;
+      }
+
+      nav.nav-open .nav-toggle {
+        margin-top: 20px;
+      }
+
+      nav.nav-open .nav-links {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        width: 100%;
+        padding: 1.4rem 2rem 0.4rem;
+        border-top: 1px solid rgba(184, 196, 208, 0.14);
+      }
+
+      nav.nav-open .nav-links a {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+
+      nav.nav-open .nav-cta {
+        grid-column: 1 / -1;
+        display: block;
+        width: calc(100% - 4rem);
+        margin: 0.65rem 2rem 0;
+        padding: 0.85rem 1rem;
       }
 
       .logo-text {

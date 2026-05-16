@@ -26,7 +26,7 @@
       Cotizar
     </button>
     <!-- Botón móvil -->
-    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menú">
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menú" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -297,16 +297,10 @@
   <script>
     // ----- Menú móvil -----
     function toggleMenu() {
-      const links = document.querySelector('.nav-links');
-      const cta   = document.querySelector('.nav-cta');
-
-      if (links.style.display === 'flex') {
-        links.style.display = 'none';
-        cta.style.display   = 'none';
-      } else {
-        links.style.cssText = 'display:flex; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:#161a20; padding:1.5rem 2rem; gap:1rem; border-bottom:2px solid #d4890a;';
-        cta.style.cssText   = 'display:block; position:absolute; top:130px; left:2rem; right:2rem;';
-      }
+      const nav = document.querySelector('nav');
+      const toggle = document.querySelector('.nav-toggle');
+      const isOpen = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     }
 
     function enviarFormulario() {
@@ -336,11 +330,18 @@
     // ----- Cerrar menú al hacer clic en un enlace (móvil) -----
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        const links = document.querySelector('.nav-links');
-        const cta   = document.querySelector('.nav-cta');
-        links.style.display = 'none';
-        cta.style.display   = 'none';
+        const nav = document.querySelector('nav');
+        const toggle = document.querySelector('.nav-toggle');
+        nav.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    document.querySelector('.nav-cta').addEventListener('click', () => {
+      const nav = document.querySelector('nav');
+      const toggle = document.querySelector('.nav-toggle');
+      nav.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
 
     const productImages = {
