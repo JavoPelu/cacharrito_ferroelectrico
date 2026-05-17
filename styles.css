@@ -145,6 +145,35 @@
       clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
     }
 
+    .hero-visual {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+      overflow: hidden;
+      opacity: 0.74;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(26, 30, 36, 0.62), rgba(26, 30, 36, 0.18)),
+        linear-gradient(0deg, rgba(26, 30, 36, 0.28), rgba(26, 30, 36, 0.08));
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transform: scale(1.03);
+    }
+
     .hero-grid {
       position: absolute;
       right: 0;
@@ -155,7 +184,7 @@
         linear-gradient(var(--steel3) 1px, transparent 1px),
         linear-gradient(90deg, var(--steel3) 1px, transparent 1px);
       background-size: 40px 40px;
-      opacity: 0.35;
+      opacity: 0.22;
       clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
     }
 
@@ -1040,6 +1069,22 @@
         max-width: none;
       }
 
+      .hero-visual {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        order: 2;
+        margin-top: 2rem;
+        clip-path: none;
+        border: 1px solid rgba(212, 137, 10, 0.45);
+        border-radius: 6px;
+        opacity: 1;
+      }
+
+      .hero-visual::after {
+        background: linear-gradient(0deg, rgba(26, 30, 36, 0.34), rgba(26, 30, 36, 0.04));
+      }
+
       .hero h1 {
         font-size: clamp(2.7rem, 15vw, 3.5rem);
         line-height: 0.95;
@@ -1068,6 +1113,7 @@
       }
 
       .hero-stats {
+        order: 3;
         position: static;
         display: grid;
         grid-template-columns: 1fr;
