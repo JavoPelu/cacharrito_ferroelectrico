@@ -54,31 +54,18 @@
       align-items: center;
       cursor: pointer;
       text-decoration: none;
-    }
-
-    .logo-text {
-      position: relative;
-      display: grid;
-      gap: 0;
-      color: #000;
-      background: #f5f5f3;
+      background: #f4f4f1;
       border-radius: 999px;
-      padding: 0.38rem 1.05rem 0.45rem;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      line-height: 0.82;
-      letter-spacing: 0;
-      transform: rotate(-4deg);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
-      isolation: isolate;
+      padding: 0.28rem 0.72rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.24);
     }
 
-    .logo-text .logo-main {
-      font-size: 1.22rem;
-    }
-
-    .logo-text .logo-sub {
-      font-size: 1rem;
+    .logo img {
+      display: block;
+      width: auto;
+      height: 46px;
+      max-width: 214px;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -790,11 +777,21 @@
       gap: 1rem;
     }
 
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 3px;
-      color: var(--gold2);
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      background: #f4f4f1;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+    }
+
+    .footer-brand img {
+      display: block;
+      width: auto;
+      height: 72px;
+      max-width: 320px;
+      object-fit: contain;
     }
 
     .footer-copy {
@@ -1026,17 +1023,9 @@
         padding: 0.85rem 1rem;
       }
 
-      .logo-text {
-        padding: 0.32rem 0.72rem 0.38rem;
-        transform: rotate(-3deg);
-      }
-
-      .logo-text .logo-main {
-        font-size: 0.95rem;
-      }
-
-      .logo-text .logo-sub {
-        font-size: 0.78rem;
+      .logo img {
+        height: 40px;
+        max-width: 168px;
       }
 
       .hero {
@@ -1170,6 +1159,11 @@
         text-align: center;
       }
 
+      .footer-brand img {
+        height: 58px;
+        max-width: 250px;
+      }
+
       .footer-links {
         justify-content: center;
         flex-wrap: wrap;
@@ -1218,12 +1212,9 @@
     }
 
     @media (max-width: 380px) {
-      .logo-text .logo-main {
-        font-size: 0.84rem;
-      }
-
-      .logo-text .logo-sub {
-        font-size: 0.7rem;
+      .logo img {
+        height: 36px;
+        max-width: 148px;
       }
 
       .hero {
