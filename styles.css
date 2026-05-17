@@ -1015,6 +1015,10 @@
         align-self: center;
       }
 
+      .logo {
+        justify-self: center;
+      }
+
       nav.nav-open {
         align-items: center;
         padding-bottom: 0.9rem;
